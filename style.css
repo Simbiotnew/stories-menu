@@ -1,0 +1,178 @@
+/* ===== Палитра из интерьера: тёмное дерево, зелень, кирпич, лампы, клетчатые скатерти ===== */
+:root {
+  --bg: #16110d;          /* тёмное дерево */
+  --surface: #1f1812;
+  --green: #1f4a35;       /* зелёные стены и растения */
+  --green-neon: #3ddc84;  /* подсветка бара */
+  --amber: #e8a24a;       /* свет ламп и кирпич */
+  --brick: #b4532f;
+  --check-red: #c8302d;   /* красная клетка скатертей */
+  --text: #efe6d8;
+  --muted: #a89c8a;
+  --line: #3a2e24;
+  --font-title: "Oswald", sans-serif;
+  --font-text: "Lora", Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ===== Шапка ===== */
+.header {
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+  background: linear-gradient(180deg, var(--green) 0%, var(--bg) 100%);
+}
+.header__logo img {
+  display: block;
+  margin: 0 auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(232, 162, 74, .4); /* свечение лампы */
+}
+
+/* ===== Клетчатая лента (скатерть) ===== */
+.gingham {
+  height: 14px;
+  background-color: #f3ece0;
+  background-image:
+    linear-gradient(90deg, rgba(200, 48, 45, .55) 50%, transparent 50%),
+    linear-gradient(rgba(200, 48, 45, .55) 50%, transparent 50%);
+  background-size: 14px 14px;
+}
+
+/* ===== Навигация ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(22, 17, 13, .95);
+  border-bottom: 1px solid var(--line);
+}
+.nav__list {
+  display: flex;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav__list::-webkit-scrollbar { display: none; }
+.nav__list a {
+  display: block;
+  white-space: nowrap;
+  padding: .35rem .9rem;
+  border: 1px solid var(--green-neon);
+  border-radius: 999px;
+  color: var(--green-neon);
+  font-family: var(--font-title);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: .85rem;
+  text-decoration: none;
+  transition: box-shadow .2s, background .2s;
+}
+.nav__list a:hover,
+.nav__list a:focus-visible {
+  background: var(--green-neon);
+  color: var(--bg);
+  box-shadow: 0 0 14px rgba(61, 220, 132, .6); /* неон как на баре */
+}
+
+/* ===== Контент ===== */
+.menu { max-width: 40rem; margin: 0 auto; padding: 0 1rem 2rem; }
+
+.group-title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--amber);
+  padding: .4rem;
+  margin: 2.5rem -1rem 0;
+}
+
+.section { padding-top: 1.75rem; }
+.section__title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: 1.6rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.section__title::after {            /* кирпично-красная черта под заголовком */
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin: .5rem auto 0;
+  background: var(--brick);
+}
+.section__note {
+  display: block;
+  margin-top: .25rem;
+  font-family: var(--font-text);
+  font-style: italic;
+  font-size: .9rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+}
+
+.items { list-style: none; }
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: .7rem .75rem;
+  border-bottom: 1px solid var(--line);
+}
+.item:nth-child(even) { background: var(--surface); }
+.item__name { flex: 1; }
+.price {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: var(--font-title);
+  font-weight: 500;
+  color: var(--amber);
+}
+.price__from {
+  font-family: var(--font-text);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2.5rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ===== Планшеты и ПК ===== */
+@media (min-width: 768px) {
+  body { font-size: 1.125rem; }
+  .header__logo img { width: 180px; height: 180px; }
+  .section__title { font-size: 2rem; }
+  .group-title { margin-inline: 0; border-radius: 2px; }
+  .nav__list { justify-content: center; flex-wrap: wrap; overflow: visible; }
+}
